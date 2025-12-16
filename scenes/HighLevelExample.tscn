@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b74fneoj0dai5"]
+
+[ext_resource type="PackedScene" uid="uid://kyf7meyfpriy" path="res://scenes/Menu.tscn" id="1_cgff3"]
+[ext_resource type="Script" uid="uid://bjc1j0cj2y47o" path="res://scripts/multiplayer_spawner.gd" id="2_vx5bp"]
+[ext_resource type="PackedScene" uid="uid://bf7ljmssm8beh" path="res://scenes/Player/Player_character.tscn" id="3_vx5bp"]
+
+[node name="HighLevelExample" type="Node2D"]
+
+[node name="Menu" parent="." instance=ExtResource("1_cgff3")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bf7ljmssm8beh", "uid://da0dlhxi7gexs")
+spawn_path = NodePath("..")
+script = ExtResource("2_vx5bp")
+network_player = ExtResource("3_vx5bp")
