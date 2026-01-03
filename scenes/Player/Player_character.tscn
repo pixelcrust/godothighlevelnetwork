@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bgf5jlmv7pcub" path="res://icon.svg" id="1_g4e3d"]
 [ext_resource type="Script" uid="uid://vyoh5cd3yd55" path="res://scripts/player.gd" id="1_jx0ca"]
-[ext_resource type="Script" uid="uid://vof4ha5m241o" path="res://scenes/Player/has_hp_collision.gd" id="3_dsjug"]
+[ext_resource type="Script" uid="uid://vof4ha5m241o" path="res://scripts/has_hp_collision.gd" id="3_dsjug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5r8au"]
 size = Vector2(123, 23)
@@ -30,14 +30,31 @@ shape = SubResource("RectangleShape2D_5r8au")
 replication_config = SubResource("SceneReplicationConfig_ny0ba")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["has_hp"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("3_dsjug")
 
 [node name="collision_hitbox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 28)
 shape = SubResource("RectangleShape2D_dsjug")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -19.0
+offset_top = -117.0
+offset_right = 21.0
+offset_bottom = -77.0
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_right = 68.5625
+offset_bottom = 31.0
+placeholder_text = "HP"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="being_hit_by_attack" from="Area2D" to="." method="_on_area_2d_being_hit_by_attack"]
